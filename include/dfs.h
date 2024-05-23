@@ -3,14 +3,14 @@
 #define DFS_H
 
 #include <vector>
+#include "../include/graph.h"
 
 class DFS {
     public:
-        static bool dfs(
+        static std::vector<int>* dfs(
             Graph *graph,
             int start,
-            int goal,
-            std::vector<bool>* visited,
-            std::vector<int>* path);
+            int goal);
 };
 #endif  // DFS_H
+

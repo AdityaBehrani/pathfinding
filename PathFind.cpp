@@ -5,55 +5,10 @@
 #include <vector>
 #include "src/graph.cpp"
 #include "src/bfs.cpp"
-// #include "src/dfs.cpp"
-// #include "src/dijkstra.cpp"
+#include "src/dfs.cpp"
+#include "src/dijkstra.cpp"
 
-std::vector<std::vector<int>>* getEdgeList(
-    std::string filename,
-    std::vector<std::vector<int>>* weights
-) {
-    std::fstream infile(filename);
-    if (!infile) {
-        std::cerr << "Unable to open " << filename << "\n";
-        return NULL;
-    }
-
-    //  init edgeList
-    std::vector<std::vector<int>>* edgeList = \
-        new std::vector<std::vector<int>>();
-
-    //  get number of nodes and allocate mem for a list for each node
-    int N;
-    infile >> N;
-    for (int i = 0; i < N; i++) {
-        edgeList->push_back(std::vector<int>());
-    }
-
-    //  allocate mem for weight matrix
-    for (int i = 0; i < N; i++) {
-        weights->push_back(std::vector<int>(N, NULL));
-    }
-
-    //  add edges to the list
-    int edges;
-    int u, v, w;
-    infile >> edges;
-
-    std::string line;
-    for (int i = 0; i < edges; i++) {
-        infile >> u >> v >> w;
-        //  edges
-        edgeList->at(u).push_back(v);
-        edgeList->at(v).push_back(u);
-        
-        //  weigths
-        weights->at(v).at(u) = w;
-        weights->at(u).at(v) = w;
-    }
-
-    infile.close();
-    return edgeList;
-}
+int START, GOAL;
 
 Graph* buildGraph(std::string filename) {
     Graph *g = new Graph();
@@ -85,7 +40,6 @@ Graph* buildGraph(std::string filename) {
     infile.close();
     return g;
 }
-
 
 void promptInputs(
     std::string &filename
@@ -130,20 +84,19 @@ int main() {
     std::vector<int>* path = NULL;
 
     if (selection == 1) {
-        // std::vector<bool>* visited = new std::vector<bool>(g->size, false);
-        // DFS::dfs(g, START, GOAL, visited, path);
-        // delete visited;
+        path = DFS::dfs(g, START, GOAL);
     } else if (selection == 2) {
         path = BFS::bfs(g, START, GOAL);
     } else if (selection == 3) {
-        //DIJKSTRA::get_path_dijkstra(edgeList, START, GOAL, weights, path);
+        path = DIJKSTRA::dijkstra(g, START, GOAL);
     } else {
         std::cout << "Not a valid option\n";
+        delete path;
+        delete g;
         return 0;
     }
 
     printPath(path);
-
 
     // cleanup
     delete path;
