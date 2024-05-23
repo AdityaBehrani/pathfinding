@@ -6,13 +6,11 @@
 #include <vector>
 
 class Graph {
-    private:
-        std::unordered_map<int, std::vector<std::pair<int, int>>> adjList;
-    
     public:
+        int size;
+        std::unordered_map<int, std::vector<std::pair<int, int>>> adjList;
+
         void addNode(int node);
-        void removeNode(int node);
         void addEdge(int src, int dest, int weight);
-        void removeEdge(int src, int dest);
 };
 #endif  // GRAPH_H

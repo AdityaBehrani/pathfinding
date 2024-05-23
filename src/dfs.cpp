@@ -2,34 +2,24 @@
 #include <vector>
 #include "../include/dfs.h"
 
-void DFS::get_path_dfs(
-    std::vector<std::vector<int>>* edgeList,
-    std::vector<int>* path
-) {
-    std::vector<bool>* visited = new std::vector<bool>(edgeList->size(), false);
-    dfs(edgeList, visited, path);
-
-    // cleanup
-    delete visited;
-}
-
 bool DFS::dfs(
-    std::vector<std::vector<int>>* edgeList,
+    Graph *g,
     int start,
-    int end,
+    int goal,
     std::vector<bool>* visited,
     std::vector<int>* path
 ) {
     (*visited)[start] = true;
     path->push_back(start);
 
-    if (start == end) {
+    if (start == goal) {
         return true;
     }
 
-    for (int neighbor : edgeList->at(start)) {
-        if (!(*visited)[neighbor]) {
-            if (dfs(edgeList, neighbor, end, visited, path)) {
+    for (auto& [next, _] : g->adjList[start]) {
+
+        if (!(*visited)[next]) {
+            if (dfs(g, next, goal, visited, path)) {
                 return true;
             }
         }

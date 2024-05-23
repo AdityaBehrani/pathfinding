@@ -3,16 +3,13 @@
 #define BFS_H
 
 #include <vector>
+#include "../include/graph.h"
 
 class BFS {
-    private:
-        static bool bfs(
-            std::vector<std::vector<int>>* edgeList,
-            std::vector<int>* path);
-
     public:
-        static void get_path_bfs(
-            std::vector<std::vector<int>>* edgeList,
-            std::vector<int>* path);
+        static std::vector<int>* bfs(
+            Graph *graph,
+            int start,
+            int goal);
 };
 #endif  // BFS_H

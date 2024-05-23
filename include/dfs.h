@@ -5,15 +5,12 @@
 #include <vector>
 
 class DFS {
-    private:
-        static bool dfs(
-            std::vector<std::vector<int>>* edgeList,
-            std::vector<bool>* visited,
-            std::vector<int>* path);
-
     public:
-        static void get_path_dfs(
-            std::vector<std::vector<int>>* edgeList,
+        static bool dfs(
+            Graph *graph,
+            int start,
+            int goal,
+            std::vector<bool>* visited,
             std::vector<int>* path);
 };
 #endif  // DFS_H
