@@ -3,8 +3,6 @@
 #include <vector>
 #include <iostream>
 #include "../include/bfs.h"
-#include "../include/core.h"
-
 
 std::vector<int>* BFS::bfs(
     Graph *graph,
@@ -17,7 +15,7 @@ std::vector<int>* BFS::bfs(
     std::vector<int> parents(N, -1);
     std::vector<bool> visited(N, false);
     std::queue<int> q;
-    
+
     q.push(start);
 
     int curr;
@@ -31,7 +29,7 @@ std::vector<int>* BFS::bfs(
                 path->push_back(curr);
                 curr = parents[curr];
             }
-            path->push_back(START);
+            path->push_back(start);
             std::reverse(path->begin(), path->end());
 
             return path;

@@ -3,18 +3,13 @@
 #define DIJKSTRA_H
 
 #include <vector>
+#include "../include/graph.h"
 
 class DIJKSTRA {
-    private:
-        static bool dijkstra(
-            std::vector<std::vector<int>>* edgeList,
-            std::vector<std::vector<int>>* weights,
-            std::vector<int>* path);
-
     public:
-        static void get_path_dijkstra(
-            std::vector<std::vector<int>>* edgeList,
-            std::vector<std::vector<int>>* weights,
-            std::vector<int>* path);
+        static std::vector<int>* dijkstra(
+            Graph *graph,
+            int start,
+            int goal);
 };
 #endif  // DIJKSTRA_H
