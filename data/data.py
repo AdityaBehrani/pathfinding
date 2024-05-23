@@ -10,7 +10,7 @@ for i in range(N):
 selected = set()
 nodes = {i for i in range(1, N)}
 
-# ensures a full connected graph
+# ensures a fully connected graph
 curr = 0
 while nodes:
     next = nodes.pop()

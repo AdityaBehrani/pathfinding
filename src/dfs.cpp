@@ -4,12 +4,10 @@
 
 void DFS::get_path_dfs(
     std::vector<std::vector<int>>* edgeList,
-    int start,
-    int end,
     std::vector<int>* path
 ) {
     std::vector<bool>* visited = new std::vector<bool>(edgeList->size(), false);
-    dfs(edgeList, start, end, visited, path);
+    dfs(edgeList, visited, path);
 
     // cleanup
     delete visited;

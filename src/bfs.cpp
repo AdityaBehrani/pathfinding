@@ -2,20 +2,17 @@
 #include <queue>
 #include <vector>
 #include "../include/bfs.h"
+#include "../include/core.h"
 
 void BFS::get_path_bfs(
     std::vector<std::vector<int>>* edgeList,
-    int start,
-    int end,
     std::vector<int>* path
 ) {
-    bfs(edgeList, start, end, path);
+    bfs(edgeList, path);
 }
 
 bool BFS::bfs(
     std::vector<std::vector<int>>* edgeList,
-    int start,
-    int end,
     std::vector<int>* path
 ) {
     int N = edgeList->size();
@@ -23,20 +20,20 @@ bool BFS::bfs(
     std::vector<bool> visited(N, false);
 
     std::queue<int> q;
-    q.push(start);
+    q.push(START);
 
     int curr;
     while (!q.empty()) {
         curr = q.front();
         q.pop();
 
-        if (curr == end) {
+        if (curr == GOAL) {
             // reconstruct path
             while (parents[curr] != -1) {
                 path->push_back(curr);
                 curr = parents[curr];
             }
-            path->push_back(start);
+            path->push_back(START);
             std::reverse(path->begin(), path->end());
 
             return true;

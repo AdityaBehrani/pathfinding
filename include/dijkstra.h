@@ -1,19 +1,20 @@
 // Copyright 2024 Aditya Behrani
-#ifndef DFS_H
-#define DFS_H
+#ifndef DIJKSTRA_H
+#define DIJKSTRA_H
 
 #include <vector>
 
-class DFS {
+class DIJKSTRA {
     private:
-        static bool dfs(
+        static bool dijkstra(
             std::vector<std::vector<int>>* edgeList,
-            std::vector<bool>* visited,
+            std::vector<std::vector<int>>* weights,
             std::vector<int>* path);
 
     public:
-        static void get_path_dfs(
+        static void get_path_dijkstra(
             std::vector<std::vector<int>>* edgeList,
+            std::vector<std::vector<int>>* weights,
             std::vector<int>* path);
 };
-#endif  // DFS_H
+#endif  // DIJKSTRA_H

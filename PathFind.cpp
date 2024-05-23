@@ -1,10 +1,11 @@
 // Copyright 2024 Aditya Behrani
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <queue>
 #include <vector>
 #include "src/bfs.cpp"
 #include "src/dfs.cpp"
+#include "src/dijkstra.cpp"
 
 std::vector<std::vector<int>>* getEdgeList(
     std::string filename,
@@ -20,19 +21,19 @@ std::vector<std::vector<int>>* getEdgeList(
     std::vector<std::vector<int>>* edgeList = \
         new std::vector<std::vector<int>>();
 
-    // get number of nodes and allocate mem for a list for each node
+    //  get number of nodes and allocate mem for a list for each node
     int N;
     infile >> N;
     for (int i = 0; i < N; i++) {
         edgeList->push_back(std::vector<int>());
     }
 
-    // allocate mem for weight matrix
+    //  allocate mem for weight matrix
     for (int i = 0; i < N; i++) {
         weights->push_back(std::vector<int>(N, NULL));
     }
 
-    // add edges to the list
+    //  add edges to the list
     int edges;
     int u, v, w;
     infile >> edges;
@@ -54,24 +55,31 @@ std::vector<std::vector<int>>* getEdgeList(
 }
 
 void promptInputs(
-    std::string &filename,
-    int &start,
-    int &end
+    std::string &filename
 ) {
     std::cout << "What data file: ";
     std::cin >> filename;
 
-    std::cout << "Start: ";
-    std::cin >> start;
+    std::cout << "STARTing Node: ";
+    std::cin >> START;
 
-    std::cout << "End: ";
-    std::cin >> end;
+    std::cout << "Goal Node: ";
+    std::cin >> GOAL;
+}
+
+void printPath(
+    std::vector<int>* path
+) {
+    if (path->size() > 0) {
+        for (int i = 0; i < path->size(); i++) {
+            std::cout << "Node " << i << ": " << path->at(i) << "\n";
+        }
+    }
 }
 
 int main() {
     std::string filename;
-    int start, end;
-    promptInputs(filename, start, end);
+    promptInputs(filename);
 
     std::vector<std::vector<int>>* weights = new std::vector<std::vector<int>>();
     std::vector<std::vector<int>>* edgeList = getEdgeList(filename, weights);
@@ -83,23 +91,24 @@ int main() {
     }
 
     int selection;
-    std::cout << "Select your Algorithm:\n1: DFS\n2: BFS\n3: A*\n";
+    std::cout << "Select your Algorithm:\n1: DFS\n2: BFS\n3: Diijkstra's\nSelection: ";
     std::cin >> selection;
+    std::cout << "\n";
 
     std::vector<int>* path = new std::vector<int>();
     if (selection == 1) {
-        DFS::get_path_dfs(edgeList, start, end, path);
+        DFS::get_path_dfs(edgeList, START, GOAL, path);
     } else if (selection == 2) {
-        BFS::get_path_bfs(edgeList, start, end, path);
+        BFS::get_path_bfs(edgeList, START, GOAL, path);
+    } else if (selection == 3) {
+        DIJKSTRA::get_path_dijkstra(edgeList, START, GOAL, weights, path);
     } else {
-        std::cout << "This search has not yet been implemented\n";
+        std::cout << "Not a valid option\n";
+        return 0;
     }
 
-    if (path->size() > 0) {
-        for (int val : *path) {
-            std::cout << val << "\n";
-        }
-    }
+    printPath(path);
+
 
     // cleanup
     delete edgeList;
