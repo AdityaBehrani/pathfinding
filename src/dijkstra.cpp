@@ -48,7 +48,7 @@ std::vector<int>* DIJKSTRA::dijkstra(
             if (!visited[next]) {
                 totCost = cost - weight;
 
-                if (totCost > costVec[next] || 1 == costVec[next] ) {
+                if (totCost > costVec[next] || 1 == costVec[next]) {
                     pq.push(std::make_tuple(totCost, next));
                     parents[next] = curr;
                     costVec[next] = totCost;

@@ -1,6 +1,6 @@
 // Copyright 2024 Aditya Behrani
-#ifndef DIJKSTRA_H
-#define DIJKSTRA_H
+#ifndef INCLUDE_DIJKSTRA_H_
+#define INCLUDE_DIJKSTRA_H_
 
 #include <vector>
 #include "../include/graph.h"
@@ -12,4 +12,4 @@ class DIJKSTRA {
             int start,
             int goal);
 };
-#endif  // DIJKSTRA_H
+#endif  // INCLUDE_DIJKSTRA_H_

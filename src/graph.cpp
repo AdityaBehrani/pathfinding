@@ -1,3 +1,4 @@
+// Copyright 2024 Aditya Behrani
 #include "../include/graph.h"
 
 void Graph::addNode(int node) {

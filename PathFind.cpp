@@ -16,6 +16,7 @@ Graph* buildGraph(std::string filename) {
     std::fstream infile(filename);
     if (!infile) {
         std::cerr << "Unable to open " << filename << "\n";
+        delete g;
         return NULL;
     }
 
@@ -77,7 +78,9 @@ int main() {
     }
 
     int selection;
-    std::cout << "Select your Algorithm:\n1: DFS\n2: BFS\n3: Dijkstra's\nSelection: ";
+    std::cout << "Select your Algorithm:\n1: DFS\n2: BFS\n3: Dijkstra's" \
+              << "\nSelection: ";
+
     std::cin >> selection;
     std::cout << "\n";
 

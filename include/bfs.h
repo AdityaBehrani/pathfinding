@@ -1,6 +1,6 @@
 // Copyright 2024 Aditya Behrani
-#ifndef BFS_H
-#define BFS_H
+#ifndef INCLUDE_BFS_H_
+#define INCLUDE_BFS_H_
 
 #include <vector>
 #include "../include/graph.h"
@@ -12,4 +12,4 @@ class BFS {
             int start,
             int goal);
 };
-#endif  // BFS_H
+#endif  // INCLUDE_BFS_H_
