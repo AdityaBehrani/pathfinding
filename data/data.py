@@ -24,4 +24,4 @@ for _ in range(len(edges) // 200):
 print(len(selected))
 for edge in selected:
     a, b = edge
-    print(a, b, random.randint(1, 10))
+    print(a, b, random.randint(1, 10)) 

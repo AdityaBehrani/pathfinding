@@ -10,3 +10,4 @@ void Graph::addNode(int node) {
 void Graph::addEdge(int src, int dest, int weight) {
     adjList[src].push_back({dest, weight});
 }
+ 
