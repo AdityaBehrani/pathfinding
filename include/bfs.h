@@ -2,16 +2,13 @@
 #ifndef INCLUDE_Bfs_H_
 #define INCLUDE_Bfs_H_
 
-#include <vector>
 #include "graph.h"
 #include "pathfinder.h"
+#include <vector>
 
 class Bfs : public Pathfinder {
-    public:
-        void search(
-            Graph &graph,
-            int start,
-            int goal,
-            std::vector<int> &path) const override;
+public:
+  void search(Graph &graph, int start, int goal,
+              std::vector<int> &path) const override;
 };
-#endif  // INCLUDE_Bfs_H_
+#endif // INCLUDE_Bfs_H_

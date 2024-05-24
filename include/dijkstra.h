@@ -2,16 +2,13 @@
 #ifndef INCLUDE_Dijkstra_H_
 #define INCLUDE_Dijkstra_H_
 
-#include <vector>
 #include "graph.h"
 #include "pathfinder.h"
+#include <vector>
 
-class Dijkstra : public Pathfinder{
-    public:
-        void search(
-            Graph &graph,
-            int start,
-            int goal,
-            std::vector<int> &path) const override;
+class Dijkstra : public Pathfinder {
+public:
+  void search(Graph &graph, int start, int goal,
+              std::vector<int> &path) const override;
 };
-#endif  // INCLUDE_Dijkstra_H_
+#endif // INCLUDE_Dijkstra_H_
