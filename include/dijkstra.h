@@ -1,15 +1,17 @@
 // Copyright 2024 Aditya Behrani
-#ifndef INCLUDE_DIJKSTRA_H_
-#define INCLUDE_DIJKSTRA_H_
+#ifndef INCLUDE_Dijkstra_H_
+#define INCLUDE_Dijkstra_H_
 
 #include <vector>
-#include "../include/graph.h"
+#include "graph.h"
+#include "pathfinder.h"
 
-class DIJKSTRA {
+class Dijkstra : public Pathfinder{
     public:
-        static std::vector<int>* dijkstra(
-            Graph *graph,
+        void search(
+            Graph &graph,
             int start,
-            int goal);
+            int goal,
+            std::vector<int> &path) const override;
 };
-#endif  // INCLUDE_DIJKSTRA_H_
+#endif  // INCLUDE_Dijkstra_H_

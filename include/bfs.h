@@ -1,15 +1,17 @@
 // Copyright 2024 Aditya Behrani
-#ifndef INCLUDE_BFS_H_
-#define INCLUDE_BFS_H_
+#ifndef INCLUDE_Bfs_H_
+#define INCLUDE_Bfs_H_
 
 #include <vector>
-#include "../include/graph.h"
+#include "graph.h"
+#include "pathfinder.h"
 
-class BFS {
+class Bfs : public Pathfinder {
     public:
-        static std::vector<int>* bfs(
-            Graph *graph,
+        void search(
+            Graph &graph,
             int start,
-            int goal);
+            int goal,
+            std::vector<int> &path) const override;
 };
-#endif  // INCLUDE_BFS_H_
+#endif  // INCLUDE_Bfs_H_

@@ -1,16 +1,17 @@
 // Copyright 2024 Aditya Behrani
-#ifndef INCLUDE_DFS_H_
-#define INCLUDE_DFS_H_
+#ifndef INCLUDE_Dfs_H_
+#define INCLUDE_Dfs_H_
 
 #include <vector>
-#include "../include/graph.h"
+#include "graph.h"
+#include "pathfinder.h"
 
-class DFS {
+class Dfs : public Pathfinder {
     public:
-        static std::vector<int>* dfs(
-            Graph *graph,
+        void search(
+            Graph &graph,
             int start,
-            int goal);
+            int goal,
+            std::vector<int> &path) const override;
 };
-#endif  // INCLUDE_DFS_H_
-
+#endif  // INCLUDE_Dfs_H_
