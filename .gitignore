@@ -1,2 +1,3 @@
-PathFind
-PathFind.dSYM/*
+*.dSYM/*
+*.out
+data*.txt

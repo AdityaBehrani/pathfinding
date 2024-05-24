@@ -1,47 +1,38 @@
 // Copyright 2024 Aditya Behrani
-#include <vector>
-#include <stack>
 #include "../include/dfs.h"
+#include <stack>
+#include <vector>
 
+void Dfs::search(Graph &graph, int start, int goal,
+                 std::vector<int> &path) const {
+  int N = graph.getSize();
+  std::vector<int> parents(N, -1);
+  std::vector<bool> visited(N, false);
+  std::stack<int> s;
 
-std::vector<int>* DFS::dfs(
-    Graph *graph,
-    int start,
-    int goal
-) {
-    std::vector<int>* path = new std::vector<int>();
+  s.push(start);
 
-    int N = graph->size;
-    std::vector<int> parents(N, -1);
-    std::vector<bool> visited(N, false);
-    std::stack<int> s;
+  int curr;
+  while (!s.empty()) {
+    curr = s.top();
+    s.pop();
 
-    s.push(start);
-
-    int curr;
-    while (!s.empty()) {
-        curr = s.top();
-        s.pop();
-
-        if (curr == goal) {
-            // reconstruct path
-            while (parents[curr] != -1) {
-                path->push_back(curr);
-                curr = parents[curr];
-            }
-            path->push_back(start);
-            std::reverse(path->begin(), path->end());
-
-            return path;
-        }
-
-        visited[curr] = true;
-        for (auto& [next, _] : graph->adjList[curr]) {
-            if (!visited[next] && parents[next] == -1) {
-                s.push(next);
-                parents[next] = curr;
-            }
-        }
+    if (curr == goal) {
+      // reconstruct path
+      while (parents[curr] != -1) {
+        path.push_back(curr);
+        curr = parents[curr];
+      }
+      path.push_back(start);
+      std::reverse(path.begin(), path.end());
     }
-    return NULL;
+
+    visited[curr] = true;
+    for (auto &[next, _] : graph.getEdges(curr)) {
+      if (!visited[next] && parents[next] == -1) {
+        s.push(next);
+        parents[next] = curr;
+      }
+    }
+  }
 }
