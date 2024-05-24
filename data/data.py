@@ -1,27 +1,42 @@
 import random
-N = 1000
-print(N)
-edges = set()
+import argparse
 
-for i in range(N):
-    for j in range(i + 1, N):
-        edges.add((i, j))
+def create_graph(n: int, density: float, outfile: str):
+    """Creates a datafile representing a graph."""
 
-selected = set()
-nodes = {i for i in range(1, N)}
+    with open(outfile, 'w', encoding="utf-8") as file:
+        file.write(f'{n}\n')
 
-# ensures a fully connected graph
-curr = 0
-while nodes:
-    next = nodes.pop()
-    selected.add((curr, next))
-    curr = next
+        nodes = set(range(1, n))
+        selected = set()
+        edges = set()
 
-# random edge connections
-for _ in range(len(edges) // 200):
-    selected.add(edges.pop())
+        # ensures a fully connected graph
+        curr = 0
+        while nodes:
+            nxt = nodes.pop()
+            selected.add((curr, nxt))
+            curr = nxt
 
-print(len(selected))
-for edge in selected:
-    a, b = edge
-    print(a, b, random.randint(1, 10))
+        # generates all edges
+        for i in range(n):
+            for j in range(i + 1, n):
+                edges.add((i, j))
+
+        # random edge connections
+        num_edges = int(len(edges) * density)
+        file.write(f'{len(selected)}\n')
+        for _ in range(num_edges):
+            a, b = edges.pop()
+            file.write(f'{a} {b} {random.randint(1, 10)}\n')
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-n', type=int, help='The number of nodes')
+    parser.add_argument('-d', type=float, help='1.0 is a complete graph, \
+            and 0 contains N-1 edges (just enough to ensure each node is reachable)')
+    parser.add_argument('-o', type=str, help='The output file')
+
+    args = parser.parse_args()
+    create_graph(args.n, args.d, args.o)
