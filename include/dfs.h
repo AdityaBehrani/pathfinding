@@ -6,7 +6,8 @@
 #include "pathfinder.h"
 #include <vector>
 
-class Dfs : public Pathfinder {
+class Dfs : public Pathfinder
+{
 public:
   void search(Graph &graph, int start, int goal,
               std::vector<int> &path) const override;

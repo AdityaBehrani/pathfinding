@@ -6,7 +6,8 @@
 #include "pathfinder.h"
 #include <vector>
 
-class Dijkstra : public Pathfinder {
+class Dijkstra : public Pathfinder
+{
 public:
   void search(Graph &graph, int start, int goal,
               std::vector<int> &path) const override;

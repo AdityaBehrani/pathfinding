@@ -1,3 +1,7 @@
 *.dSYM/*
 *.out
 data*.txt
+.vscode*
+app
+sfml.sh
+*.o

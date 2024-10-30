@@ -4,19 +4,23 @@
 
 #include <unordered_map>
 #include <utility>
+#include <set>
 #include <vector>
 
-class Graph {
+class Graph
+{
 private:
-  int size;
-  std::unordered_map<int, std::vector<std::pair<int, int>>> adjList;
+  int _size;
+  std::unordered_map<int, std::vector<std::pair<int, int>>> _adjList;
 
 public:
   Graph();
-  int build(std::string filename);
+  Graph(std::string filename);
   void addNode(int node);
   void addEdge(int src, int dest, int weight);
-  int getSize();
-  std::vector<std::pair<int, int>> getEdges(int node);
+  int size();
+  std::unordered_map<int, std::vector<std::pair<int, int>>> edgeList();
+  std::vector<std::pair<int, int>> edges(int node);
+  std::set<std::pair<int, int>> uniqueEdges();
 };
 #endif // INCLUDE_GRAPH_H_
