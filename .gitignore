@@ -5,3 +5,5 @@ data*.txt
 app
 sfml.sh
 *.o
+*.code-workspace
+*.ruff_cache
