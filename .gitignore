@@ -1,2 +1,9 @@
-PathFind
-PathFind.dSYM/*
+*.dSYM/*
+*.out
+data*.txt
+.vscode*
+app
+sfml.sh
+*.o
+*.code-workspace
+*.ruff_cache
